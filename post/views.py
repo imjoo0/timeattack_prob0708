@@ -67,3 +67,15 @@ class JobView(APIView):
             return Response(status=status.HTTP_200_OK)
 
         return Response(job_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ApplyView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsCanndidateUser]
+
+    def post(self,request):
+        apply_serializer = JobPostActivitySerializer(data=request.data)
+        if apply_serializer.is_valid():
+            apply_serializer.save()
+            return Response(status=status.HTTP_200_OK)
+
+        return Response(apply_serializer.errors,status=status.HTTP_400_BAD_REQUEST)

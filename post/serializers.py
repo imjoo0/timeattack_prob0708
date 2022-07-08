@@ -77,3 +77,8 @@ class JobPostSkillSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobPostSkillSet
         fields = ('id', 'skill_set', 'job_post')
+
+class JobPostActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobPostActivity
+        fields = '__all__'

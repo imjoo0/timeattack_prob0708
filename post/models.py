@@ -1,5 +1,5 @@
 from django.db import models
-
+from user.models import User
 
 class SkillSet(models.Model):
     name = models.CharField(max_length=128)
@@ -54,3 +54,11 @@ class BusinessArea(models.Model):
 
     class Meta:
         db_table = 'business_areas'
+
+class JobPostActivity(models.Model):
+    user = models.ForeignKey(User,on_delete = models.CASCADE,null=True)
+    job_post = models.ForeignKey(JobPost,on_delete = models.CASCADE,null=True)
+    apply_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "job_post_activity"
