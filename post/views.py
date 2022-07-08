@@ -73,6 +73,7 @@ class ApplyView(APIView):
     permission_classes = [IsCanndidateUser]
 
     def post(self,request):
+        request.data['user'] = request.user.id
         apply_serializer = JobPostActivitySerializer(data=request.data)
         if apply_serializer.is_valid():
             apply_serializer.save()
